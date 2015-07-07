@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,8 +43,11 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
 
                 ParseObject dailyWord = new DailyWord();
-                dailyWord.put("word", word.getText().toString());
+                String wordString = word.getText().toString();
+                wordString = wordString.substring(0,1).toUpperCase() + wordString.substring(1);
+                dailyWord.put("word", wordString);
                 dailyWord.saveInBackground();
+                word.setText("");
 
             }
         });
