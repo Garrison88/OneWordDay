@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">One Word Day</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="parse_table_daily_word">DailyWord</string>
+    <string name="btn_after_submit">Submit again tomorrow!</string>
+    <string name="application_id">com.example.garrisonthomas.onewordday</string>
+    <string name="btn_logout">Logout</string>
+    <string name="btn_view_results">View Results</string>
+    <string name="btn_submit">Submit</string>
+    <string name="tv_main_question">How did today make you feel?</string>
+    <string name="et_word_hint">Enter one word...</string>
+    <string name="tv_main_title">One Word Day</string>
 </resources>

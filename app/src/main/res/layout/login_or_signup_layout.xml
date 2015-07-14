@@ -10,14 +10,14 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sign Up" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
