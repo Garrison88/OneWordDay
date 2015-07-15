@@ -3,6 +3,8 @@ package com.example.garrisonthomas.onewordday;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -10,7 +12,7 @@ import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-public class LoginOrSignupActivity extends Activity {
+public class LoginOrSignupActivity extends BaseActivity {
 
     public static final String TYPE = "type";
     public static final String LOGIN = "Log In";
@@ -34,6 +36,7 @@ public class LoginOrSignupActivity extends Activity {
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            LoginOrSignupActivity.this.finish();
         } else {
             mLoginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -41,9 +44,9 @@ public class LoginOrSignupActivity extends Activity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, LOGIN);
                     startActivity(intent);
-                    renameButton("Login");
-
+                    LoginOrSignupActivity.this.finish();
                 }
+
             });
 
             mSignupButton.setOnClickListener(new View.OnClickListener() {
@@ -52,14 +55,10 @@ public class LoginOrSignupActivity extends Activity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, SIGNUP);
                     startActivity(intent);
-                    renameButton("Sign Up");
+                    LoginOrSignupActivity.this.finish();
+
                 }
             });
         }
-    }
-
-    private void renameButton(String status) {
-        AuthenticateActivity.status = status;
-
     }
 }

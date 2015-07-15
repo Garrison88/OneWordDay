@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:hint="Enter email..."
+        android:hint="@string/auth_email_hint"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:hint="Enter password..."
+        android:hint="@string/auth_password_hint"
         android:inputType="textPassword" />
 
     <Button

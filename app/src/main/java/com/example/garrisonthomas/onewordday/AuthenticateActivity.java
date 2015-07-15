@@ -3,6 +3,8 @@ package com.example.garrisonthomas.onewordday;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +16,7 @@ import com.parse.LogInCallback;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-public class AuthenticateActivity extends Activity {
+public class AuthenticateActivity extends BaseActivity {
 
     protected String mAction;
     protected EditText mEmailField, mPasswordField;
@@ -35,10 +37,30 @@ public class AuthenticateActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
         mAction = bundle.getString(LoginOrSignupActivity.TYPE);
 
+        if (mAction.equals(LoginOrSignupActivity.SIGNUP)) {
+
+//            Button lsBtn = (Button) findViewById(R.id.btn_signup_login);
+            mButton.setText("Sign Up");
+
+        } else if (mAction.equals(LoginOrSignupActivity.LOGIN)) {
+
+//            Button lsBtn = (Button) findViewById(R.id.btn_signup_login);
+            mButton.setText("Login");
+
+        }
+
+
+
+
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!isInternetAvailable()) {
+                    Toast.makeText(AuthenticateActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 pBar.setVisibility(View.VISIBLE);
 
@@ -50,6 +72,8 @@ public class AuthenticateActivity extends Activity {
                     user.setUsername(userName);
                     user.setEmail(email);
                     user.setPassword(password);
+                    user.put("submittedToday", false);
+                    user.saveInBackground();
 
                     user.signUpInBackground(new SignUpCallback() {
                         public void done(com.parse.ParseException e) {
@@ -91,8 +115,6 @@ public class AuthenticateActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        Button lsBtn = (Button) findViewById(R.id.btn_signup_login);
-        lsBtn.setText(status);
 
     }
 }
