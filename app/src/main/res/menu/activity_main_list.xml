@@ -6,4 +6,9 @@
         android:id="@+id/menu_logout_button"
         android:title="@string/menu_logout" />
 
+    <item
+
+        android:id="@+id/menu_about_developer"
+        android:title="@string/menu_logout" />
+
 </menu>

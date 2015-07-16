@@ -14,34 +14,27 @@
         android:id="@+id/title"
         android:textColor="#ffffffff"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_main_question"
-        android:textSize="20sp"
-        android:id="@+id/tv_question"
-        android:textColor="#ffa7a7a7"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:padding="15dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/et_word_hint"
+        android:hint="Today was..."
         android:textSize="20sp"
-        android:id="@+id/enter_word"
-        android:layout_below="@+id/tv_question"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/et_enter_word"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_submit"
         android:id="@+id/btn_submit"
-        android:layout_below="@+id/enter_word"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/et_enter_word"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -49,7 +42,8 @@
         android:text="@string/btn_view_results"
         android:id="@+id/btn_view_results"
         android:layout_below="@+id/btn_submit"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:padding="15dp" />
 
     <ScrollView
         android:layout_width="wrap_content"

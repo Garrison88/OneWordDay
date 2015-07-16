@@ -44,7 +44,6 @@ public class LoginOrSignupActivity extends BaseActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, LOGIN);
                     startActivity(intent);
-                    LoginOrSignupActivity.this.finish();
                 }
 
             });
@@ -55,7 +54,6 @@ public class LoginOrSignupActivity extends BaseActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, SIGNUP);
                     startActivity(intent);
-                    LoginOrSignupActivity.this.finish();
 
                 }
             });

@@ -9,9 +9,13 @@
     <string name="btn_view_results">View Results</string>
     <string name="btn_submit">Submit</string>
     <string name="tv_main_question">How did today make you feel?</string>
-    <string name="et_word_hint">Enter one word...</string>
+    <string name="et_word_hint">Enter one word…</string>
     <string name="tv_main_title">One Word Day</string>
-    <string name="auth_password_hint">Enter password...</string>
-    <string name="auth_email_hint">Enter email...</string>
+    <string name="auth_password_hint">Choose a password…</string>
+    <string name="auth_email_hint">Enter email…</string>
     <string name="menu_logout">Logout</string>
+    <string name="auth_username_hint">Choose a username…</string>
+    <string name="toast_no_internet">No internet connection</string>
+    <string name="toast_login_failed">Login failed. Please try again</string>
+    <string name="auth_label">Login</string>
 </resources>

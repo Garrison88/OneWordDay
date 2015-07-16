@@ -12,6 +12,14 @@
         android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/et_enter_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hint="@string/auth_username_hint"
+        android:inputType="textNoSuggestions" />
+
+    <EditText
         android:id="@+id/et_enter_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

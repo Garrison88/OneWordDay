@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.parse.ParseUser;
@@ -25,7 +26,9 @@ public class BaseActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.activity_main_list, menu);
+
         if (ParseUser.getCurrentUser() == null) {
 
             menu.removeItem(R.id.menu_logout_button);

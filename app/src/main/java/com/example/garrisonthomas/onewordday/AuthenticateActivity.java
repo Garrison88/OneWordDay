@@ -1,15 +1,12 @@
 package com.example.garrisonthomas.onewordday;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -19,16 +16,16 @@ import com.parse.SignUpCallback;
 public class AuthenticateActivity extends BaseActivity {
 
     protected String mAction;
-    protected EditText mEmailField, mPasswordField;
+    protected EditText mUsernameField, mEmailField, mPasswordField;
     protected Button mButton;
     protected ProgressBar pBar;
-    public static String status = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authenticate_layout);
 
+        mUsernameField = (EditText) findViewById(R.id.et_enter_username);
         mEmailField = (EditText) findViewById(R.id.et_enter_email);
         mPasswordField = (EditText) findViewById(R.id.et_enter_password);
         mButton = (Button) findViewById(R.id.btn_signup_login);
@@ -39,18 +36,16 @@ public class AuthenticateActivity extends BaseActivity {
 
         if (mAction.equals(LoginOrSignupActivity.SIGNUP)) {
 
-//            Button lsBtn = (Button) findViewById(R.id.btn_signup_login);
             mButton.setText("Sign Up");
+            setTitle("Sign Up");
 
         } else if (mAction.equals(LoginOrSignupActivity.LOGIN)) {
 
-//            Button lsBtn = (Button) findViewById(R.id.btn_signup_login);
             mButton.setText("Login");
+            mUsernameField.setVisibility(View.GONE);
+            mPasswordField.setHint("Enter password...");
 
         }
-
-
-
 
 
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +53,7 @@ public class AuthenticateActivity extends BaseActivity {
             public void onClick(View v) {
 
                 if (!isInternetAvailable()) {
-                    Toast.makeText(AuthenticateActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AuthenticateActivity.this, getString(R.string.toast_no_internet), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -66,10 +61,10 @@ public class AuthenticateActivity extends BaseActivity {
 
                 if (mAction.equals(LoginOrSignupActivity.SIGNUP)) {
                     ParseUser user = new ParseUser();
+                    String username = mUsernameField.getText().toString();
                     String email = mEmailField.getText().toString();
-                    String userName = email;
                     String password = mPasswordField.getText().toString();
-                    user.setUsername(userName);
+                    user.setUsername(username);
                     user.setEmail(email);
                     user.setPassword(password);
                     user.put("submittedToday", false);
@@ -83,7 +78,7 @@ public class AuthenticateActivity extends BaseActivity {
                                 startActivity(new Intent(AuthenticateActivity.this, MainActivity.class));
                             } else {
                                 Toast.makeText(AuthenticateActivity.this,
-                                        "Woops! Signup failed, please try again", Toast.LENGTH_LONG).show();
+                                        getString(R.string.toast_login_failed), Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -102,7 +97,7 @@ public class AuthenticateActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(AuthenticateActivity.this,
-                                        "Woops! Login failed, please try again", Toast.LENGTH_LONG).show();
+                                        getString(R.string.toast_login_failed), Toast.LENGTH_LONG).show();
                             }
                         }
                     });

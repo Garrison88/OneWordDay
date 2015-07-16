@@ -1,13 +1,9 @@
 package com.example.garrisonthomas.onewordday;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -28,10 +24,11 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     EditText word;
-    Button submit, viewResults, logout;
+    Button submit, viewResults;
     TextView tvResult;
     ProgressBar mainPBar;
     SharedPreferences sp;
+    ParseUser currentUser;
 
 
     @Override
@@ -39,16 +36,18 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        currentUser = ParseUser.getCurrentUser();
 
         sp = getSharedPreferences(getString(R.string.application_id), Context.MODE_PRIVATE);
         submit = (Button) findViewById(R.id.btn_submit);
         viewResults = (Button) findViewById(R.id.btn_view_results);
         tvResult = (TextView) findViewById(R.id.tv_result);
         mainPBar = (ProgressBar) findViewById(R.id.main_pbar);
-        word = (EditText) findViewById(R.id.enter_word);
+        word = (EditText) findViewById(R.id.et_enter_word);
+
+        word.setHint("How was your day, "+currentUser.getUsername()+"?");
 
         mainPBar.setVisibility(View.INVISIBLE);
-
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +58,9 @@ public class MainActivity extends BaseActivity {
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
                 if (!isInternetAvailable()) {
-                    Toast.makeText(MainActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.toast_no_internet), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                ParseUser currentUser = ParseUser.getCurrentUser();
-
 
                 if (!TextUtils.isEmpty(word.getText())) {
 
@@ -107,15 +103,12 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
-
-
         viewResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (!isInternetAvailable()) {
-                    Toast.makeText(MainActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.toast_no_internet), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -154,10 +147,10 @@ public class MainActivity extends BaseActivity {
         super.onResume();
 
         if (!isInternetAvailable()) {
+            Toast.makeText(MainActivity.this, getString(R.string.toast_no_internet), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
         try {
             currentUser.fetch();
         } catch (Exception e) {
@@ -197,6 +190,4 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
-
-
 }
