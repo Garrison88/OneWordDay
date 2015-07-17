@@ -18,4 +18,7 @@
     <string name="toast_no_internet">No internet connection</string>
     <string name="toast_login_failed">Login failed. Please try again</string>
     <string name="auth_label">Login</string>
+    <string name="developer_website">http://garrisonthomas.com/</string>
+    <string name="menu_text_developer_website">Developer Website</string>
+    <string name="main_et_hint">Today was...</string>
 </resources>

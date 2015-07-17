@@ -1,8 +1,6 @@
 package com.example.garrisonthomas.onewordday;
 
 import android.app.Application;
-import android.view.Menu;
-import android.view.MenuInflater;
 
 import com.parse.Parse;
 import com.parse.ParseObject;

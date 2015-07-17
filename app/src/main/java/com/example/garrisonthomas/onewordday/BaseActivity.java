@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,6 +51,11 @@ public class BaseActivity extends Activity {
             startActivity(new Intent(this, LoginOrSignupActivity.class));
             this.finish();
             return true;
+        } else if (id == R.id.menu_about_developer) {
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.developer_website)));
+            startActivity(browserIntent);
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -71,5 +77,4 @@ public class BaseActivity extends Activity {
         }
         return false;
     }
-
 }

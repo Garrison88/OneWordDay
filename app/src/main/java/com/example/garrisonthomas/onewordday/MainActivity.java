@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity {
         mainPBar = (ProgressBar) findViewById(R.id.main_pbar);
         word = (EditText) findViewById(R.id.et_enter_word);
 
-        word.setHint("How was your day, "+currentUser.getUsername()+"?");
+        word.setHint("How was your day, " + currentUser.getUsername() + "?");
 
         mainPBar.setVisibility(View.INVISIBLE);
 
@@ -77,7 +77,9 @@ public class MainActivity extends BaseActivity {
                         if (!currentUser.getBoolean("submittedToday")) {
                             ParseObject dailyWord = new DailyWord();
                             String wordString = word.getText().toString();
-                            wordString = wordString.substring(0, 1).toUpperCase() + wordString.substring(1);
+                            wordString = wordString.substring(0, 1).toUpperCase() +
+                                    wordString.substring(1);
+                            wordString = wordString.replace(" ", "");
                             dailyWord.put("word", wordString);
                             dailyWord.saveInBackground();
                             word.setText("");
@@ -164,6 +166,7 @@ public class MainActivity extends BaseActivity {
             submit.setEnabled(true);
             submit.setText(getString(R.string.btn_submit));
 
+            //TODO: reset submittedToday boolean value to false at midnight
 
         } else {
             String dateStringNow = DateHelper.getCurrentDate();

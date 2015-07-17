@@ -1,15 +1,10 @@
 package com.example.garrisonthomas.onewordday;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.parse.Parse;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class LoginOrSignupActivity extends BaseActivity {
@@ -29,9 +24,6 @@ public class LoginOrSignupActivity extends BaseActivity {
         mLoginButton = (Button) findViewById(R.id.btn_login);
         mSignupButton = (Button) findViewById(R.id.btn_signup);
 
-		/*
-         * Check for cached user using ParseUser.getCurrentUser()
-		 */
         if (ParseUser.getCurrentUser() != null) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
