@@ -2,6 +2,7 @@ package com.example.garrisonthomas.onewordday;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,6 +76,7 @@ public class AuthenticateActivity extends BaseActivity {
                             pBar.setVisibility(View.INVISIBLE);
                             if (e == null) {
                                 startActivity(new Intent(AuthenticateActivity.this, MainActivity.class));
+                                AuthenticateActivity.this.finish();
                             } else {
                                 Toast.makeText(AuthenticateActivity.this,
                                         getString(R.string.toast_login_failed), Toast.LENGTH_LONG).show();
@@ -93,6 +95,7 @@ public class AuthenticateActivity extends BaseActivity {
                             if (user != null) {
 
                                 startActivity(new Intent(AuthenticateActivity.this, MainActivity.class));
+                                AuthenticateActivity.this.finish();
 
                             } else {
                                 Toast.makeText(AuthenticateActivity.this,

@@ -2,6 +2,7 @@ package com.example.garrisonthomas.onewordday;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,7 +15,6 @@ public class LoginOrSignupActivity extends BaseActivity {
     public static final String SIGNUP = "Sign Up";
 
     protected Button mLoginButton, mSignupButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class LoginOrSignupActivity extends BaseActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, LOGIN);
                     startActivity(intent);
+                    LoginOrSignupActivity.this.finish();
                 }
 
             });
@@ -46,6 +47,7 @@ public class LoginOrSignupActivity extends BaseActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, SIGNUP);
                     startActivity(intent);
+                    LoginOrSignupActivity.this.finish();
 
                 }
             });

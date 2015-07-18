@@ -3,6 +3,7 @@ package com.example.garrisonthomas.onewordday;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -30,11 +31,17 @@ public class MainActivity extends BaseActivity {
     SharedPreferences sp;
     ParseUser currentUser;
 
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         currentUser = ParseUser.getCurrentUser();
 
@@ -141,6 +148,23 @@ public class MainActivity extends BaseActivity {
         });
 
         //TODO: override back button to close app
+    }
+
+    private static final int TIME_INTERVAL = 2000;
+    private long mBackPressed;
+
+    @Override
+    public void onBackPressed()
+    {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+        {
+            super.onBackPressed();
+            return;
+        }
+        else { Toast.makeText(getBaseContext(), "Tap back button in order to exit",
+                Toast.LENGTH_SHORT).show(); }
+
+        mBackPressed = System.currentTimeMillis();
     }
 
     @Override

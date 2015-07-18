@@ -1,14 +1,13 @@
 package com.example.garrisonthomas.onewordday;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.parse.ParseUser;
@@ -16,7 +15,7 @@ import com.parse.ParseUser;
 /**
  * Created by Garrison Thomas on 2015-07-15.
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class BaseActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        getMenuInflater().inflate(R.menu.activity_main_list, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 
         if (ParseUser.getCurrentUser() == null) {
 

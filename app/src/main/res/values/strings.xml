@@ -21,4 +21,5 @@
     <string name="developer_website">http://garrisonthomas.com/</string>
     <string name="menu_text_developer_website">Developer Website</string>
     <string name="main_et_hint">Today was...</string>
+    <string name="action_search">Search</string>
 </resources>

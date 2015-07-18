@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/menu_logout_button"
+        android:title="@string/menu_logout" />
+
+    <item
+        android:id="@+id/menu_about_developer"
+        android:title="@string/menu_text_developer_website" />
+
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/action_search"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_search_action"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+</menu>
