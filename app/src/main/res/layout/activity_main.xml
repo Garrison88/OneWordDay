@@ -5,44 +5,25 @@
     style="@style/MyMaterialTheme"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:id="@+id/toolbar_linear_layout"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical">
-
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
-        
-    </LinearLayout>
-
-    <TextView
-        android:layout_below="@id/toolbar_linear_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_main_title"
-        android:textSize="30sp"
-        android:id="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:padding="15dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textCapSentences|textAutoCorrect"
-        android:hint="@string/main_et_hint"
         android:textSize="20sp"
         android:maxLength="46"
         android:id="@+id/et_enter_word"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:padding="15dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="@dimen/abc_action_button_min_height_material"
         android:text="@string/btn_submit"
         android:id="@+id/btn_submit"
         android:layout_below="@+id/et_enter_word"
@@ -53,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_view_results"
+        android:elevation="@dimen/abc_action_button_min_height_material"
         android:id="@+id/btn_view_results"
         android:layout_below="@+id/btn_submit"
         android:layout_centerHorizontal="true"
@@ -66,13 +48,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:id="@+id/tv_result" />
+            android:id="@+id/tv_result"/>
 
     </ScrollView>
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/btn_view_results"
+        android:id="@+id/results_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
+        style="?android:attr/progressBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/main_pbar"

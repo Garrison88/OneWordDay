@@ -19,7 +19,7 @@ public class DailyWord extends ParseObject {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return getString("word");
     }
 }

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
     <EditText
+        android:layout_below="@id/toolbar"
         android:id="@+id/et_enter_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,6 +17,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
+        android:layout_below="@id/et_enter_email"
         android:id="@+id/et_enter_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +26,7 @@
         android:inputType="textNoSuggestions" />
 
     <EditText
+        android:layout_below="@id/et_enter_username"
         android:id="@+id/et_enter_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,12 +35,16 @@
         android:inputType="textPassword" />
 
     <Button
+        android:layout_below="@id/et_enter_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:id="@+id/btn_signup_login"
         android:layout_gravity="center_horizontal"/>
 
     <ProgressBar
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btn_signup_login"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,4 +52,4 @@
         android:layout_gravity="center_horizontal"
         android:visibility="invisible"/>
 
-</LinearLayout>
+</RelativeLayout>

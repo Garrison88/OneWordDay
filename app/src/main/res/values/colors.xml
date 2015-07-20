@@ -2,11 +2,12 @@
 
 <resources>
 
-    <color name="colorPrimary">#F50057</color>
-    <color name="colorPrimaryDark">#C51162</color>
-    <color name="textColorPrimary">#FFFFFF</color>
-    <color name="windowBackground">#FFFFFF</color>
+    <color name="colorButtonNormal">#FFEF00</color>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="textColorPrimary">#F90097</color>
+    <color name="windowBackground">#C0D7BC</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#FF80AB</color>
+    <color name="colorAccent">#F90097</color>
 
 </resources>

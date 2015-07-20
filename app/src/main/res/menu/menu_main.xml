@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/menu_about_developer"
-        android:title="@string/menu_text_developer_website" />
+        android:title="@string/menu_text_developer_website"/>
 
     <item
         android:id="@+id/action_search"

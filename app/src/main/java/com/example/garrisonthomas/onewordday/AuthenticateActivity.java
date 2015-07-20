@@ -19,11 +19,16 @@ public class AuthenticateActivity extends BaseActivity {
     protected EditText mUsernameField, mEmailField, mPasswordField;
     protected Button mButton;
     protected ProgressBar pBar;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authenticate_layout);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
 
         mUsernameField = (EditText) findViewById(R.id.et_enter_username);
         mEmailField = (EditText) findViewById(R.id.et_enter_email);

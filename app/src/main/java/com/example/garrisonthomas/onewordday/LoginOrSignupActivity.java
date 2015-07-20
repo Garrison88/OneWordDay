@@ -13,6 +13,7 @@ public class LoginOrSignupActivity extends BaseActivity {
     public static final String TYPE = "type";
     public static final String LOGIN = "Log In";
     public static final String SIGNUP = "Sign Up";
+    Toolbar mToolbar;
 
     protected Button mLoginButton, mSignupButton;
 
@@ -20,6 +21,10 @@ public class LoginOrSignupActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_or_signup_layout);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
 
         mLoginButton = (Button) findViewById(R.id.btn_login);
         mSignupButton = (Button) findViewById(R.id.btn_signup);
@@ -36,7 +41,6 @@ public class LoginOrSignupActivity extends BaseActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, LOGIN);
                     startActivity(intent);
-                    LoginOrSignupActivity.this.finish();
                 }
 
             });
@@ -47,7 +51,6 @@ public class LoginOrSignupActivity extends BaseActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, SIGNUP);
                     startActivity(intent);
-                    LoginOrSignupActivity.this.finish();
 
                 }
             });

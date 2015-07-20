@@ -21,6 +21,8 @@ public class BaseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //TODO: add Facebook integration
+
     }
 
     @Override
