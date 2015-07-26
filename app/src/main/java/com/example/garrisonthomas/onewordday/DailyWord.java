@@ -12,9 +12,21 @@ public class DailyWord extends ParseObject {
 
     }
 
+    public int getMood() {
+
+        return getInt("moodNumber");
+
+    }
+
     public void setWord(String word) {
 
         put("word", word);
+
+    }
+
+    public void setMood(int mood) {
+
+        put("moodNumber", mood);
 
     }
 

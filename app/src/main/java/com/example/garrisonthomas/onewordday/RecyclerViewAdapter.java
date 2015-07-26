@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,13 +21,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     List<RecyclerViewData> data = Collections.emptyList();
 
-    public RecyclerViewAdapter (Context context, List<RecyclerViewData> data) {
-        inflater=LayoutInflater.from(context);
+    public RecyclerViewAdapter(Context context, List<RecyclerViewData> data) {
+        inflater = LayoutInflater.from(context);
         this.data = data;
     }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view=inflater.inflate(R.layout.recycler_view_custom_row, parent, false);
+        View view = inflater.inflate(R.layout.recycler_view_custom_row, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }

@@ -2,6 +2,7 @@ package com.example.garrisonthomas.onewordday;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,171 +35,220 @@ public class MainActivity extends BaseActivity {
 
     EditText word;
     Button submit, viewResults;
-    TextView tvResult;
-    ProgressBar mainPBar;
+    public static TextView tvResult;
+    public static ProgressBar mainPBar;
     SharedPreferences sp;
     ParseUser currentUser;
     Toolbar mToolbar;
+    String [] moodNumber;
+    String [] moodNames;
+    String moodAtPosition;
+
+    Spinner moodSpinner;
 
     RecyclerView resultsRecyclerView;
-    RecyclerViewAdapter adapter;
-
-    public static List<RecyclerViewData> getData(){
-
-        List<RecyclerViewData> data = new ArrayList<>();
-        int[] icons = {R.drawable.ic_launcher, R.drawable.cloud_lightning_moon, R.drawable.ic_search_action};
-        String[] titles = {"Launcher", "Cloud/Lightning/Moon", "Search Icon"};
-
-        for (int i = 0; i < icons.length && i < titles.length; i++) {
-
-            RecyclerViewData current = new RecyclerViewData();
-            current.iconId = icons[i];
-            current.title = titles[i];
-            data.add(current);
-
-        }
-        return data;
-    }
+    RecyclerViewAdapter rvAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(mToolbar);
 
         currentUser = ParseUser.getCurrentUser();
 
         sp = getSharedPreferences(getString(R.string.application_id), Context.MODE_PRIVATE);
+
         submit = (Button) findViewById(R.id.btn_submit);
         viewResults = (Button) findViewById(R.id.btn_view_results);
+
         tvResult = (TextView) findViewById(R.id.tv_result);
-        mainPBar = (ProgressBar) findViewById(R.id.main_pbar);
+
         word = (EditText) findViewById(R.id.et_enter_word);
 
-        resultsRecyclerView = (RecyclerView) findViewById(R.id.results_recycler_view);
-
-        adapter = new RecyclerViewAdapter(MainActivity.this, getData());
-
-        resultsRecyclerView.setAdapter(adapter);
-
-        resultsRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        mainPBar = (ProgressBar) findViewById(R.id.main_pbar);
 
         word.setHint("How was your day, " + currentUser.getUsername() + "?");
 
+        moodSpinner = (Spinner) findViewById(R.id.image_spinner);
+        moodNumber = getResources().getStringArray(R.array.mood);
+        moodNames = getResources().getStringArray(R.array.moodNames);
+
+        resultsRecyclerView = (RecyclerView) findViewById(R.id.results_recycler_view);
+        rvAdapter = new RecyclerViewAdapter(MainActivity.this, getData());
+        resultsRecyclerView.setAdapter(rvAdapter);
+        resultsRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
         mainPBar.setVisibility(View.INVISIBLE);
 
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.moodNames, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        moodSpinner.setAdapter(adapter);
+        moodSpinner.setSelection(0);
+        moodSpinner.setAdapter(adapter);
 
+        moodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-    submit.setOnClickListener(new View.OnClickListener()
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
 
-    {
-        @Override
-        public void onClick (View v){
+                moodAtPosition = moodNumber[position];
 
-        InputMethodManager imm = (InputMethodManager) getSystemService(
-                Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-
-        if (!isInternetAvailable()) {
-            Toast.makeText(MainActivity.this, getString(R.string.toast_no_internet), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (!TextUtils.isEmpty(word.getText())) {
-
-            if (!currentUser.getBoolean("emailVerified")) {
-                try {
-                    currentUser.fetch();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
 
-            if (currentUser.getBoolean("emailVerified")) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-                if (!currentUser.getBoolean("submittedToday")) {
-                    ParseObject dailyWord = new DailyWord();
-                    String wordString = word.getText().toString();
-                    wordString = wordString.substring(0, 1).toUpperCase() +
-                            wordString.substring(1);
-                    wordString = wordString.replace(" ", "");
-                    dailyWord.put("word", wordString);
-                    dailyWord.saveInBackground();
-                    word.setText("");
-
-                    String submitDate = DateHelper.getCurrentDate();
-
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("submitDate", submitDate);
-                    editor.apply();
-                    currentUser.put("submittedToday", true);
-                    currentUser.saveInBackground();
-                    submit.setEnabled(false);
-                    submit.setText(getString(R.string.btn_after_submit));
-
-                    Toast.makeText(MainActivity.this, "Successfully submitted " + wordString,
-                            Toast.LENGTH_LONG).show();
-                }
-            } else {
-                Toast.makeText(MainActivity.this, "Please verify email address",
-                        Toast.LENGTH_LONG).show();
             }
-        }
+
+        });
+
+        submit.setOnClickListener(new View.OnClickListener()
+
+              {
+                  @Override
+                  public void onClick(View v) {
+
+                      InputMethodManager imm = (InputMethodManager) getSystemService(
+                              Context.INPUT_METHOD_SERVICE);
+                      imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                      if (!isInternetAvailable()) {
+                          Toast.makeText(MainActivity.this, getString(R.string.toast_no_internet), Toast.LENGTH_SHORT).show();
+                          return;
+                      }
+
+                      if (!TextUtils.isEmpty(word.getText())) {
+
+                          if (!currentUser.getBoolean("emailVerified")) {
+                              try {
+                                  currentUser.fetch();
+                              } catch (Exception e) {
+                                  e.printStackTrace();
+                              }
+                          }
+
+                          if (currentUser.getBoolean("emailVerified")) {
+
+                              if (!currentUser.getBoolean("submittedToday")) {
+                                  ParseObject dailyWord = new DailyWord();
+                                  String wordString = word.getText().toString();
+                                  dailyWord.put("word", wordString);
+                                  dailyWord.put("moodNumber", moodAtPosition);
+                                  dailyWord.saveInBackground();
+                                  word.setText("");
+
+                                  String submitDate = DateHelper.getCurrentDate();
+
+                                  SharedPreferences.Editor editor = sp.edit();
+                                  editor.putString("submitDate", submitDate);
+                                  editor.apply();
+                                  currentUser.put("submittedToday", true);
+                                  currentUser.saveInBackground();
+                                  submit.setEnabled(false);
+                                  submit.setText(getString(R.string.btn_after_submit));
+
+                                  Toast.makeText(MainActivity.this, "Successfully submitted " + wordString,
+                                          Toast.LENGTH_LONG).show();
+                              }
+                          } else {
+                              Toast.makeText(MainActivity.this, "Please verify email address",
+                                      Toast.LENGTH_LONG).show();
+                          }
+                      }
+                  }
+              }
+
+        );
+
+//    viewResults.setOnClickListener(new View.OnClickListener()
+//
+//    {
+//        @Override
+//        public void onClick (View v){
+//
+//        if (!isInternetAvailable()) {
+//            Toast.makeText(MainActivity.this, getString(R.string.toast_no_internet), Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        mainPBar.setVisibility(View.VISIBLE);
+//
+//
+//        final ParseQuery<DailyWord> query = new ParseQuery<>("DailyWord");
+//        query.orderByDescending("createdAt");
+//        query.findInBackground(new FindCallback<DailyWord>() {
+//            public void done(List<DailyWord> objects, com.parse.ParseException e) {
+//                ArrayList<String> wordArray = new ArrayList<>();
+//                String currentDate = DateHelper.getCurrentDate();
+//                Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+//                if (e == null) {
+//                    for (DailyWord newWord : objects) {
+//                        String s = formatter.format(newWord.getCreatedAt());
+////                        if (s.equals(currentDate)) {
+//                        DailyWord dWord = new DailyWord();
+//                        dWord.setWord(newWord.getWord());
+//                        wordArray.add(String.valueOf(dWord));
+////                        }
+//                    }
+//                } else {
+//                    Toast.makeText(MainActivity.this, "Error " + e, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                tvResult.setText(String.valueOf(wordArray));
+//                mainPBar.setVisibility(View.INVISIBLE);
+//            }
+//        });
+//
+//    }
+//
+//    }
+//
+//    );
     }
-    }
 
-    );
+    public static List<RecyclerViewData> getData() {
 
-    viewResults.setOnClickListener(new View.OnClickListener()
-
-    {
-        @Override
-        public void onClick (View v){
-
-        if (!isInternetAvailable()) {
-            Toast.makeText(MainActivity.this, getString(R.string.toast_no_internet), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        mainPBar.setVisibility(View.VISIBLE);
-
-
+        final List<RecyclerViewData> data = new ArrayList<>();
         final ParseQuery<DailyWord> query = new ParseQuery<>("DailyWord");
         query.orderByDescending("createdAt");
         query.findInBackground(new FindCallback<DailyWord>() {
             public void done(List<DailyWord> objects, com.parse.ParseException e) {
-                ArrayList<DailyWord> wordArray = new ArrayList<>();
                 String currentDate = DateHelper.getCurrentDate();
                 Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+
                 if (e == null) {
                     for (DailyWord newWord : objects) {
                         String s = formatter.format(newWord.getCreatedAt());
-                        if (s.equals(currentDate)) {
-                            DailyWord dWord = new DailyWord();
-                            dWord.setWord(newWord.getWord());
-                            wordArray.add(dWord);
+//                        if (s.equals(currentDate)) {
+                        RecyclerViewData current = new RecyclerViewData();
+                        DailyWord dWord = new DailyWord();
+                        dWord.setWord(newWord.getWord());
+                        dWord.setMood(newWord.getMood());
+                        if (dWord.getMood() == 1) {
+                            current.iconId = (R.drawable.mood_happy);
+                        } else if (dWord.getMood() == 2) {
+                            current.iconId = (R.drawable.mood_neutral);
+                        } else {
+                            current.iconId = (R.drawable.mood_sad);
                         }
+                        current.title = dWord.toString();
+                        data.add(current);
+//                        }
                     }
-                } else {
-                    Toast.makeText(MainActivity.this, "Error " + e, Toast.LENGTH_SHORT).show();
                 }
-                tvResult.setText(wordArray.toString());
                 mainPBar.setVisibility(View.INVISIBLE);
             }
         });
 
+        return data;
     }
 
-    }
-
-    );
-}
-
-private static final int TIME_INTERVAL = 2000;
-private long mBackPressed;
+    private static final int TIME_INTERVAL = 2000;
+    private long mBackPressed;
 
     @Override
     public void onBackPressed() {

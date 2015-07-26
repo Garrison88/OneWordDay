@@ -20,13 +20,24 @@
         android:layout_centerHorizontal="true"
         android:padding="15dp" />
 
+    <Spinner
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/image_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_enter_word"
+        android:layout_alignLeft="@+id/btn_submit"
+        android:layout_alignStart="@+id/btn_submit"
+        android:layout_alignRight="@+id/btn_submit"
+        android:layout_alignEnd="@+id/btn_submit" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="@dimen/abc_action_button_min_height_material"
         android:text="@string/btn_submit"
         android:id="@+id/btn_submit"
-        android:layout_below="@+id/et_enter_word"
+        android:layout_below="@+id/image_spinner"
         android:layout_centerHorizontal="true"
         android:padding="15dp" />
 
