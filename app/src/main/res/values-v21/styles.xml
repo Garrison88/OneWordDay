@@ -2,7 +2,7 @@
 
 <resources>
 
-    <style name="MyMaterialTheme" parent="MyMaterialTheme.NoActionBar">
+    <style name="MyMaterialTheme_v21" parent="MyMaterialTheme">
 
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
@@ -13,6 +13,22 @@
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:spinnerStyle">@style/RobotoSpinnerStyle</item>
+        <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Material.Button">
+        <item name="android:fontFamily">roboto-thin</item>
+        <item name="android:textColor">@color/windowBackground</item>
+    </style>
+
+    <style name="RobotoSpinnerStyle" parent="android:Widget.Material.Spinner">
+        <item name="android:fontFamily">roboto-thin</item>
+    </style>
+
+    <style name="RobotoEditTextStyle" parent="android:Widget.Material.EditText">
+        <item name="android:fontFamily">roboto-thin</item>
     </style>
 
 </resources>

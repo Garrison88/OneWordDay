@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <TextView
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:textSize="@dimen/abc_text_size_small_material"
+        android:text="Dummy Text"
+        android:id="@+id/spinner_mood_word"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:src="@drawable/cloud_lightning_moon"
+        android:layout_gravity="end|center_vertical"
+        android:id="@+id/spinner_mood_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

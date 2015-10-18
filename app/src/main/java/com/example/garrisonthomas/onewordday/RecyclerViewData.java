@@ -9,4 +9,6 @@ public class RecyclerViewData {
 
     String title;
 
+    String userAndDate;
+
 }

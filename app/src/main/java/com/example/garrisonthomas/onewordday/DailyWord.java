@@ -18,6 +18,18 @@ public class DailyWord extends ParseObject {
 
     }
 
+    public String getDate() {
+
+        return getString("date");
+
+    }
+
+    public String getRelatedUsername() {
+
+        return getString("relatedUsername");
+
+    }
+
     public void setWord(String word) {
 
         put("word", word);
@@ -27,6 +39,18 @@ public class DailyWord extends ParseObject {
     public void setMood(int mood) {
 
         put("moodNumber", mood);
+
+    }
+
+    public void setDate(String date) {
+
+        put("date", date);
+
+    }
+
+    public void setRelatedUsername(String relatedUsername) {
+
+        put("relatedUsername", relatedUsername);
 
     }
 

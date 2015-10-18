@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,8 +30,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recycler_view_custom_row, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -38,6 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         RecyclerViewData current = data.get(position);
         holder.title.setText(current.title);
+        holder.userAndDate.setText(current.userAndDate);
         holder.icon.setImageResource(current.iconId);
 
     }
@@ -50,12 +51,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
+        TextView userAndDate;
         ImageView icon;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.rv_text);
             icon = (ImageView) itemView.findViewById(R.id.rv_list_icon);
+            userAndDate = (TextView) itemView.findViewById(R.id.rv_user);
         }
     }
 

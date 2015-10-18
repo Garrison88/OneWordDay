@@ -1,16 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="mood">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+    <string-array name="text_size_entries">
+        <item>16pt</item>
+        <item>18pt</item>
+        <item>20pt</item>
+        <item>22pt</item>
+        <item>24pt</item>
+        <item>26pt</item>
     </string-array>
 
-    <string-array name="moodNames">
-        <item>Good</item>
-        <item>Neutral</item>
-        <item>Bad</item>
+    <string-array name="text_size_values">
+        <item>16</item>
+        <item>18</item>
+        <item>20</item>
+        <item>22</item>
+        <item>24</item>
+        <item>26</item>
     </string-array>
+
+    <string-array name="mood_words">
+        <item>Chair</item>
+        <item>Ball</item>
+        <item>Balloon</item>
+        <item>Bike</item>
+        <item>Book</item>
+        <item>Bug</item>
+        <item>Camera</item>
+        <item>Cloudy</item>
+        <item>Coffee</item>
+        <item>Angry</item>
+        <item>Basic</item>
+        <item>Cool</item>
+        <item>Cry</item>
+        <item>Err</item>
+        <item>Evil</item>
+        <item>Kiss</item>
+        <item>Laugh</item>
+        <item>Shame</item>
+        <item>Tongue</item>
+        <item>Wink</item>
+        <item>Wonder</item>
+        <item>Grow</item>
+        <item>Guitar</item>
+        <item>Heart</item>
+        <item>Home</item>
+        <item>Joypad</item>
+        <item>Monitor</item>
+        <item>Movie</item>
+        <item>Music</item>
+        <item>Pill</item>
+        <item>Plane</item>
+        <item>Rain</item>
+        <item>Half-Star</item>
+        <item>Sun</item>
+        <item>Umbrella</item>
+        <item>Profile</item>
+        <item>Crowd</item>
+        <item>Wand</item>
+        <item>Yinyang</item>
+    </string-array>
+
+    <array name="mood_images">
+        <item>@drawable/ic_action_armchair</item>
+        <item>@drawable/ic_action_ball</item>
+        <item>@drawable/ic_action_balloon</item>
+        <item>@drawable/ic_action_bike</item>
+        <item>@drawable/ic_action_book</item>
+        <item>@drawable/ic_action_bug</item>
+        <item>@drawable/ic_action_camera</item>
+        <item>@drawable/ic_action_cloudy</item>
+        <item>@drawable/ic_action_coffee</item>
+        <item>@drawable/ic_action_emo_angry</item>
+        <item>@drawable/ic_action_emo_basic</item>
+        <item>@drawable/ic_action_emo_cool</item>
+        <item>@drawable/ic_action_emo_cry</item>
+        <item>@drawable/ic_action_emo_err</item>
+        <item>@drawable/ic_action_emo_evil</item>
+        <item>@drawable/ic_action_emo_kiss</item>
+        <item>@drawable/ic_action_emo_laugh</item>
+        <item>@drawable/ic_action_emo_shame</item>
+        <item>@drawable/ic_action_emo_tongue</item>
+        <item>@drawable/ic_action_emo_wink</item>
+        <item>@drawable/ic_action_emo_wonder</item>
+        <item>@drawable/ic_action_grow</item>
+        <item>@drawable/ic_action_guitar</item>
+        <item>@drawable/ic_action_heart</item>
+        <item>@drawable/ic_action_home</item>
+        <item>@drawable/ic_action_joypad</item>
+        <item>@drawable/ic_action_monitor</item>
+        <item>@drawable/ic_action_movie</item>
+        <item>@drawable/ic_action_music_1</item>
+        <item>@drawable/ic_action_pill</item>
+        <item>@drawable/ic_action_plane</item>
+        <item>@drawable/ic_action_rain</item>
+        <item>@drawable/ic_action_star_5</item>
+        <item>@drawable/ic_action_sun</item>
+        <item>@drawable/ic_action_umbrella</item>
+        <item>@drawable/ic_action_user</item>
+        <item>@drawable/ic_action_users</item>
+        <item>@drawable/ic_action_wizard</item>
+        <item>@drawable/ic_action_yinyang</item>
+
+    </array>
 
 </resources>

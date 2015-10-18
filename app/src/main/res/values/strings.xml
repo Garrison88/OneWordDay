@@ -12,18 +12,20 @@
     <string name="tv_main_question">How did today make you feel?</string>
     <string name="et_word_hint">Enter one word…</string>
     <string name="tv_main_title">One Word Day</string>
-    <string name="auth_password_hint">Choose a password…</string>
-    <string name="auth_email_hint">Enter email…</string>
+    <string name="auth_password_hint">Password</string>
+    <string name="auth_email_hint">Email Address</string>
     <string name="menu_logout">Logout</string>
-    <string name="auth_username_hint">Choose a username…</string>
+    <string name="auth_username_hint">Username</string>
     <string name="toast_no_internet">No internet connection</string>
     <string name="toast_login_failed">Login failed. Please try again</string>
     <string name="auth_label">Login</string>
     <string name="developer_website">http://garrisonthomas.com/</string>
     <string name="menu_text_developer_website">Developer Website</string>
-    <string name="main_et_hint">Today was...</string>
+    <string name="main_et_hint">Today was…</string>
     <string name="action_search">Search</string>
-
+    <string name="retype_password">Retype Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
 
 
 </resources>

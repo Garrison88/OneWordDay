@@ -2,17 +2,31 @@
 
 <resources>
 
-    <style name="MyMaterialTheme" parent="MyMaterialTheme.NoActionBar">
-
-    </style>
-
-    <style name="MyMaterialTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="MyMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorButtonNormal">@color/colorButtonNormal</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:spinnerStyle">@style/RobotoSpinnerStyle</item>
     </style>
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.Holo.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/windowBackground</item>
+    </style>
+
+    <style name="RobotoSpinnerStyle" parent="android:Widget.Holo.Spinner">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+
 
 </resources>

@@ -20,7 +20,10 @@ public class LoginOrSignupActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.login_or_signup_layout);
+
+        setupUI(findViewById(R.id.login_or_signup_activity_layout));
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -41,6 +44,8 @@ public class LoginOrSignupActivity extends BaseActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, LOGIN);
                     startActivity(intent);
+                    LoginOrSignupActivity.this.finish();
+
                 }
 
             });
@@ -51,6 +56,7 @@ public class LoginOrSignupActivity extends BaseActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, SIGNUP);
                     startActivity(intent);
+                    LoginOrSignupActivity.this.finish();
 
                 }
             });
